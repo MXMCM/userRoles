@@ -10,4 +10,5 @@ router.get('/sales',pageController.renderSales);
 router.get('/hr', pageController.renderHR);
 
 router.get('/register', userController.renderRegistrationForm);
+router.post('/register', userController. registerUser);
 module.exports = router;
