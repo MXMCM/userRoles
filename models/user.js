@@ -11,12 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.belongsTo(models.Role,{
-        as:'role',
-        foreignKey:'role_id'
+      User.belongsTo(models.Role, {
+        as: 'role',
+        foreignKey: 'role_id'
       })
     }
-  }
+    can(action) {
+      let match = this.role.permissions.find(function(permissions){
+        return permission.name === action
+      });
+      if(match) return true;
+      return false;
+    }
+  };
   User.init({
     email: DataTypes.STRING,
     password: DataTypes.STRING,

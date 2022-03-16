@@ -17,8 +17,13 @@ module.exports.registerUser= async function(req,res){
     })
     res.redirect('/');
 }
-module.exports.renderLoginForm = function(req,res){
-    res.render('users/login');
+module.exports.renderLoginForm = function(req, res){
+    const errors = req.session.messages || [];
+    res.render('users/login', {errors});
+};
+module.exports.logout = function (req,res){
+    req.logout();
+    res.redirect('/login');
 }
 module.exports.loginUser = passport.authenticate('local', {
     successRedirect: '/',
