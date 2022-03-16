@@ -2,7 +2,7 @@ module.exports.renderAccounting = function(req, res){
     res.render('pages/accounting');
 }
 module.exports.renderDashboard = function(req, res){
-    if(!req.user.can(action)){
+    if(!req.user.can('view dashboard')){
         res.redirect('/');
         return;
     }
